@@ -21,6 +21,7 @@ import org.testng.annotations.*;
 import org.testng.annotations.Optional;
 import reporting.ExtentManager;
 import reporting.ExtentTestManager;
+import utils.ExcelData;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +38,19 @@ public class BasePage {
     public static Wait<WebDriver> fluentWait;
     public static ExtentReports extent;
     public static JavascriptExecutor jsDriver;
+    public static ExcelData excel;
+
+    public static final String DATA_PATH = System.getProperty("user.dir") + File.separator + "src" + File.separator
+            + "test" + File.separator + "resources" + File.separator + "test_data.xlsx";
+
+    public BasePage(){
+        dataInit();
+    }
+
+
+    public void dataInit() {
+        excel = new ExcelData(DATA_PATH);
+    }
 
     // region Hooks
     @BeforeSuite(alwaysRun = true)
